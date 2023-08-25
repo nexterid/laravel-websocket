@@ -19,5 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get('call-event', function () {
-    Broadcast(new AntrianEvent());
+    $data = [
+        'title' => 'Tutorial Laravel Websockets',
+        'event' => 'Antria Event',
+        'author' => 'nexterid'
+    ];
+    Broadcast(new AntrianEvent($data));
 });

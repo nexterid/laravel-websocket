@@ -13,13 +13,13 @@ use Illuminate\Queue\SerializesModels;
 class AntrianEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $data;
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -33,5 +33,10 @@ class AntrianEvent implements ShouldBroadcast
         //     new PrivateChannel('channel-name'),
         // ];
         return new Channel('antrian-channel');
+    }
+
+    public function broadcastWith(): array
+    {
+        return ['data' => $this->data];
     }
 }
